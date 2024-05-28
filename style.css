@@ -1,69 +1,145 @@
 :root {
-    --font-family: 'Muli', sans-serif;
-    --light-background: #ffffff;
-    --light-text: #333333;
-    --dark-background: #333333;
-    --dark-text: #ffffff;
+    --dark-color: #000000;
+    --light-color: #ecf0f1;
+    --text-color: #F0F0F0;
+    --content-background: #0a0a0a;
+    --header-background: rgba(100, 100, 100, 0.1);
+    --darker-shadow: #0d0d0d;
+    --link-default-color: #E6E6E6;
+    --link-underlined-color: #F85F6A;
+    --lighter-shadow: #2f2f2f;
+    --header-color: #efefef;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-default-color);
 }
 
 body {
-    font-family: var(--font-family);
-    transition: background-color 0.5s ease;
-    background-color: var(--light-background);
-    color: var(--light-text);
-}
-
-.theme-switch-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+body.dark-theme {
+    font-family: 'Gotham', sans-serif;
+    background-color: var(--dark-color);
+    color: var(--light-color);
 }
 
-.theme-switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
 
-.theme-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
+.header {
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
+    width: 100%;
+    background: var(--header-background);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    margin-bottom:10px;
+    text-align: center;
+    z-index: 100; /* Ensures the header stays on top of other elements */
+}
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--content-background);
+    border-radius: 20px;
 }
 
-.slider:before {
+.about_intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+h1 {
+    font-size: 2.5em;
+    color: var(--header-color);
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    background: var(--content-background);
+    border-radius: 20px;
+    /* padding: 20px; */
+}
+
+.footer {
+    margin-top: auto;
+    flex-shrink: 0;
+    background: var(--content-background);
+    padding: px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+    padding: 10px;
+    font-size: 1.2em;
+    color: var(--header-color);
+}
+
+
+a {
+    color: var(--text-color);
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 7px;
+    padding-top: 7px;
+}
+
+
+a:after {
+    content: '';
     position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    border-radius: 10px;
+    height: 2px;
+    background: var(--link-underlined-color);
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: right center;
+    transform-origin: right center;
+    -webkit-transition: -webkit-transform .6s cubic-bezier(.19, 1, .22, 1);
+    transition: -webkit-transform .6s cubic-bezier(.19, 1, .22, 1);
+    transition: transform .6s cubic-bezier(.19, 1, .22, 1);
+    transition: transform .6s cubic-bezier(.19, 1, .22, 1), -webkit-transform .6s cubic-bezier(.19, 1, .22, 1);
 }
 
-input:checked + .slider {
-    background-color: #2196F3;
+a:after {
+    background: var(--text-color);
 }
 
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-input:checked ~ .content {
-    background-color: var(--dark-background);
-    color: var(--dark-text);
+a:hover:after {
+    -webkit-transition-duration: .4s;
+    transition-duration: .4s;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
 }
