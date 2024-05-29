@@ -23,10 +23,10 @@
 }
 
 .dark-theme {
-    --background-color: #151515;
+    --background-color: #141315;
     --text-color: #FCFCFC;
-    --content-background: #202020;
-    --hover-content-background: #252525;
+    --content-background: #1A1B20;
+    --hover-content-background: #242325;
     --header-background: linear-gradient(0deg, rgba(50, 50, 50, 0.2), rgba(50, 50, 50, 1));
     --darker-shadow: #0d0d0d;
     --link-default-color: #E6E6E6;
@@ -40,18 +40,18 @@
 }
 
 .light-theme {
-    --background-color: #F0F0F0;
+    --background-color: #F5F5F7;
     --text-color: #151515;
-    --content-background: #E6E6E6;
-    --hover-content-background: #F6F6F6;
-    --header-background: linear-gradient(0deg, rgba(200, 200, 200, 0.2), rgba(200, 200, 200, 1));
-    --darker-shadow: #B3B3B3;
-    --link-default-color: #1A1A1A;
+    --content-background: #FFFFFF;
+    --hover-content-background: #F0F0F2;
+    --header-background: linear-gradient(0deg, rgba(220, 220, 225, 0.2), rgba(220, 220, 225, 1));
+    --darker-shadow: #B3B3B8;
+    --link-default-color: #1A1A1D;
     --link-underlined-color: #645ff8;
-    --lighter-shadow: #D9D9D9;
-    --header-color: #1A1A1A;
-    --footer-background: #FFFFFF;
-    --footer-content-background: #F0F0F0;
+    --lighter-shadow: #E0E0E5;
+    --header-color: #1A1A1D;
+    --footer-background: #DDDDDD;
+    --footer-content-background: #F0F0F5;
     --box-shadow: 5px 5px 10px rgba(0, 0, 0, .1);
     --hover-box-shadow: 5px 5px 15px rgba(0, 0, 0, .05);
 }
