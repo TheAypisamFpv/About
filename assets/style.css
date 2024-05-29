@@ -43,9 +43,9 @@
 .light-theme {
     --background-color: #E5E5E7;
     --text-color: #151515;
-    --content-background: #F9F8F9;
+    --content-background: #F5F5F5;
     --content-border-color: #C0C0C0;
-    --hover-content-background: #FFF5FF;
+    --hover-content-background: #FFFFFF;
     --header-background: linear-gradient(0deg, rgba(220, 220, 225, 0.2), rgba(220, 220, 225, 1));
     --darker-shadow: #B3B3B8;
     --link-default-color: #1A1A1D;
