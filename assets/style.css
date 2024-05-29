@@ -36,7 +36,7 @@
     --header-color: #efefef;
     --footer-background: #000000;
     --footer-content-background: #101010;
-    --box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
+    --box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);
     --hover-box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
 }
 
