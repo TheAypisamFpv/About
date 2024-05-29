@@ -28,32 +28,32 @@
     --content-background: #1A1B20;
     --content-border-color: #4f4f4f;
     --hover-content-background: #242325;
-    --header-background: linear-gradient(0deg, rgba(20, 19, 21, 0.2), rgba(20, 19, 21, 1));
+    --header-background: linear-gradient(0deg, rgba(20, 19, 21, 0.2), var(--footer-background));
     --darker-shadow: #0d0d0d;
     --link-default-color: #E6E6E6;
     --link-underlined-color: #645ff8;
     --lighter-shadow: #2f2f2f;
     --header-color: #efefef;
     --footer-background: #000000;
-    --footer-content-background: #101010;
+    --footer-content-background: rgba(26, 27, 33, 0.502);
     --box-shadow: 5px 5px 10px rgba(0, 0, 0, .5);
     --hover-box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
 }
 
 .light-theme {
-    --background-color: #E5E5E7;
-    --text-color: #151515;
-    --content-background: #F5F5F5;
-    --content-border-color: #C0C0C0;
-    --hover-content-background: #FFFFFF;
-    --header-background: linear-gradient(0deg, rgba(220, 220, 225, 0.2), rgba(220, 220, 225, 1));
-    --darker-shadow: #B3B3B8;
-    --link-default-color: #1A1A1D;
+    --background-color: #e8e7e8;
+    --text-color: #191919;
+    --content-background: #e8e8e9;
+    --content-border-color: #a4a4a4;
+    --hover-content-background: #F5F5F5;
+    --header-background: linear-gradient(0deg, rgba(232, 231, 232, 0.2), var(--footer-background));
+    --darker-shadow: #e7e7e7;
+    --link-default-color: #171717;
     --link-underlined-color: #645ff8;
-    --lighter-shadow: #E0E0E5;
-    --header-color: #1A1A1D;
+    --lighter-shadow: #d5d5d5;
+    --header-color: #181818;
     --footer-background: #D0D0D0;
-    --footer-content-background: #F0F0F5;
+    --footer-content-background: #F5F5F5;
     --box-shadow: 5px 5px 10px rgba(0, 0, 0, .1);
     --hover-box-shadow: 5px 5px 15px rgba(0, 0, 0, .05);
 }
@@ -83,6 +83,24 @@
     transition: all 0.5s cubic-bezier(.19, 1, .22, 1);
     scrollbar-width: thin;
     scrollbar-color: #888 transparent;
+}
+
+@keyframes slideInY {
+    0% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate {
+    opacity: 0;
+    transform: translateY(5px);
+    animation: slideInY 0.3s cubic-bezier(.19, 1, .22, 1) forwards;
 }
 
 a {
@@ -125,12 +143,14 @@ body {
     border-radius: 0 0 20px 20px;
     text-align: center;
     z-index: 100;
+    transition: transform 0.3s cubic-bezier(.19, 1, .22, 1);
 }
 
 .header-hide {
     transform: translateY(-100%);
-    transition: transform 0.3s cubic-bezier(.19, 1, .22, 1);;
+    
 }
+
 .name {
     margin-left: 10px;
 }
@@ -185,19 +205,11 @@ body {
     min-width: fit-content;
     margin: 10px;
     padding: 20px;
-    background: var(--content-background);
+    /* background: var(--content-background); */
     border-radius: 20px;
     /* box-shadow: var(--box-shadow); */
 }
 
-.about_info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* width:75%; */
-    margin: 20px;
-    gap:10px;
-}
 
 .vertical_delimiter {
     width: 70%;
@@ -215,25 +227,18 @@ body {
     border-radius: 10px;
 }
 
-.news {
+
+.about_info, .news {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    /* width: 50%; */
+    width:85%;
     margin: 20px;
+    gap:10px;
 }
 
-.news .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    /* gap:100px; */
-}
-
-.news_content {
+.news_content, .info_content {
+    font-size: 1.5em;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -259,7 +264,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: var(--content-background);
+    background: var(--content-background);
     max-width: 500px;
     min-width: 300px;
     min-height: 300px;
@@ -269,8 +274,15 @@ body {
     border-radius: 40px;
     gap:10px;
     box-shadow: var(--box-shadow);
+    --x: 50%;
+    --y: 50%;
 }
 
+
+.project * {
+    /* not selectable */
+    user-select: none;
+}
 
 a.project:hover {
     transform: scale(1.02);

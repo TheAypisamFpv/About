@@ -6,12 +6,13 @@
     <meta name="author" content="The Aypisam FPV">
     <meta name="description" content="The Aypisam FPV's personal website">
     <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/JS/script.js" async></script>
     <title>The Aypisam FPV</title>
 </head>
 <body class="dark-theme">
     <header id="header" class="header">
         <h1 class="name">The Aypisam FPV</h1>
-        <button id="theme-switcher">
+        <button id="theme-switcher" aria-label="theme switche">
             <svg id="moon-icon" class="dark-theme-icon shown" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
                 <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
@@ -71,8 +72,9 @@
         <div class="about_info">
             <h1>About Me</h1>
             <div class="content about_info">
-                <p>Hi! I'm TheAypisamFpv, a computer science student at CESI.</p>
-                <p>This page is still a work in progress.</p>
+                <div class="info_content">
+                    Hi! I'm TheAypisamFpv, a computer science student at CESI.
+                </div>
             </div>
         </div>
 
@@ -80,12 +82,9 @@
 
         <div class="news">
             <h1>Latest News</h1>
-            <div class="content">
+            <div class="content news">
                 <div class="news_content">
-                    THE ABOUT PAGE IS CURRENTLY UNDER CONSTRUCTION.
-                </div>
-                <div class="news_content">
-                    If you have any suggestions or questions, feel free to contact me.
+                    I'm still alive !
                 </div>
             </div>
         </div>
@@ -124,8 +123,15 @@
             <a class="project" href="https://github.com/TheAypisamFpv/Flagdle" target="_blank">
                     <h1>Flagdle (Collaborative)</h1>
                     <div class="description">
-                        <p>Initially, Flagdle was a simple flag quiz game, but then it got a lot more features. Now, Flagdle is one of the games that can be played, alongside multiple others such as Countrydle (using the country borders) and Cesidle (an inside joke).</p>
+                        <p>Initially, Flagdle was a simple flag quiz game, but then it got a lot more features. Now, Flagdle is one of the games that can be played, alongside multiple others such as Countrydle (using the country borders) and a Cesidle (an inside joke).</p>
                         <p>It now has a game launcher for easy access to all the new games.</p>
+                    </div>
+            </a>
+
+            <a class="project" href="https://github.com/TheAypisamFpv/maze_generator" target="_blank">
+                    <h1>Maze Generator</h1>
+                    <div class="description">
+                        <p>A Python-based maze generator that generates random mazes.</p>
                     </div>
             </a>
 
@@ -141,45 +147,8 @@
             </div>
         </div>
         <div class="footer_credits">
-            <p>© 2024 TheAypisamFpv</p>
+            <p></p>
         </div>
     </footer>
-    <script>
-        let lastScrollTop = 0;
-        const header = document.getElementById('header');
-        
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop && scrollTop > 50) {
-                header.classList.add('header-hide');
-            } else if (scrollTop < lastScrollTop) {
-                header.classList.remove('header-hide');
-            }
-            lastScrollTop = scrollTop;
-        });
-
-        const themeSwitcher = document.getElementById('theme-switcher');
-        const moonIcon = document.querySelector('#moon-icon');
-        const sunIcon = document.querySelector('#sun-icon');
-        const body = document.body;
-        
-        themeSwitcher.addEventListener('click', () => {
-            if (body.classList.contains('dark-theme')) {
-                body.classList.remove('dark-theme');
-                body.classList.add('light-theme');
-                moonIcon.classList.remove('shown');
-                moonIcon.classList.add('hidden');
-                sunIcon.classList.remove('hidden');
-                sunIcon.classList.add('shown');
-            } else {
-                body.classList.remove('light-theme');
-                body.classList.add('dark-theme');
-                moonIcon.classList.remove('hidden');
-                moonIcon.classList.add('shown');
-                sunIcon.classList.remove('shown');
-                sunIcon.classList.add('hidden');
-            }
-        });
-    </script>
 </body>
 </html>
