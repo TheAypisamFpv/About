@@ -26,6 +26,7 @@
     --background-color: #141315;
     --text-color: #FCFCFC;
     --content-background: #1A1B20;
+    --content-border-color: #4f4f4f;
     --hover-content-background: #242325;
     --header-background: linear-gradient(0deg, rgba(50, 50, 50, 0.2), rgba(50, 50, 50, 1));
     --darker-shadow: #0d0d0d;
@@ -40,7 +41,7 @@
 }
 
 .light-theme {
-    --background-color: #F5F5F7;
+    --background-color: #E5E5E7;
     --text-color: #151515;
     --content-background: #FFFFFF;
     --hover-content-background: #F0F0F2;
@@ -50,7 +51,7 @@
     --link-underlined-color: #645ff8;
     --lighter-shadow: #E0E0E5;
     --header-color: #1A1A1D;
-    --footer-background: #DDDDDD;
+    --footer-background: #D0D0D0;
     --footer-content-background: #F0F0F5;
     --box-shadow: 5px 5px 10px rgba(0, 0, 0, .1);
     --hover-box-shadow: 5px 5px 15px rgba(0, 0, 0, .05);
@@ -130,7 +131,7 @@ body {
     transition: transform 0.3s cubic-bezier(.19, 1, .22, 1);;
 }
 .name {
-    margin-inline: 50px;
+    margin-left: 10px;
 }
 
 #theme-switcher {
@@ -184,8 +185,8 @@ body {
     margin: 10px;
     padding: 20px;
     background: var(--content-background);
-    border-radius: 40px;
-    box-shadow: var(--box-shadow);
+    border-radius: 20px;
+    /* box-shadow: var(--box-shadow); */
 }
 
 .about_info {
@@ -263,7 +264,7 @@ body {
     min-height: 300px;
     margin: 20px;
     padding: 30px;
-    border : 2px solid var(--header-color);
+    border : 2px solid var(--content-border-color);
     border-radius: 40px;
     gap:10px;
     box-shadow: var(--box-shadow);
