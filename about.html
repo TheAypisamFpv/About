@@ -9,7 +9,7 @@
     <title>The Aypisam FPV</title>
 </head>
 <body class="dark-theme">
-    <header class="header">
+    <header id="header" class="header">
         <h1>The Aypisam FPV</h1>
     </header>
     <div class="full">
@@ -90,5 +90,19 @@
             <p>© 2024 TheAypisamFpv</p>
         </div>
     </footer>
+    <script>
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop && scrollTop > 50) {
+                header.classList.add('header-hide');
+            } else if (scrollTop < lastScrollTop) {
+                header.classList.remove('header-hide');
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
 </body>
 </html>

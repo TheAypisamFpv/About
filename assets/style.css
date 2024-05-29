@@ -27,7 +27,7 @@
     --text-color: #FCFCFC;
     --content-background: #202020;
     --hover-content-background: #252525;
-    --header-background: rgba(50, 50, 50, 0.3);
+    --header-background: linear-gradient(0deg, rgba(50, 50, 50, 0.2), rgba(50, 50, 50, 1));
     --darker-shadow: #0d0d0d;
     --link-default-color: #E6E6E6;
     --link-underlined-color: #645ff8;
@@ -100,13 +100,17 @@ body.dark-theme {
     top: 0;
     width: 100%;
     background: var(--header-background);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 0 0 20px 20px;
-    box-shadow: 0 0 10px var(--darker-shadow), 0 0 10px var(--lighter-shadow);
     text-align: center;
     z-index: 100;
+}
+
+.header-hide {
+    transform: translateY(-100%);
+    transition: transform 0.3s cubic-bezier(.19, 1, .22, 1);;
 }
 
 .logo {
@@ -360,10 +364,6 @@ a:not(.project):hover:after {
 }
 
 @media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
-
     .project {
         max-width: 100%;
         padding: 20px;
