@@ -22,8 +22,8 @@
     src: url(fonts/GothamSSm-Light_Web.woff2) format("woff2")
 }
 
-:root {
-    --dark-color: #151515;
+.dark-theme {
+    --background-color: #151515;
     --text-color: #FCFCFC;
     --content-background: #202020;
     --hover-content-background: #252525;
@@ -37,6 +37,23 @@
     --footer-content-background: #101010;
     --box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
     --hover-box-shadow: 5px 5px 15px rgba(0, 0, 0, .2);
+}
+
+.light-theme {
+    --background-color: #F0F0F0;
+    --text-color: #151515;
+    --content-background: #E6E6E6;
+    --hover-content-background: #F6F6F6;
+    --header-background: linear-gradient(0deg, rgba(200, 200, 200, 0.2), rgba(200, 200, 200, 1));
+    --darker-shadow: #B3B3B3;
+    --link-default-color: #1A1A1A;
+    --link-underlined-color: #645ff8;
+    --lighter-shadow: #D9D9D9;
+    --header-color: #1A1A1A;
+    --footer-background: #FFFFFF;
+    --footer-content-background: #F0F0F0;
+    --box-shadow: 5px 5px 10px rgba(0, 0, 0, .1);
+    --hover-box-shadow: 5px 5px 15px rgba(0, 0, 0, .05);
 }
 
 *::-webkit-scrollbar {
@@ -84,9 +101,9 @@ body {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
 }
-body.dark-theme {
+body {
     font-family: 'Gotham', sans-serif;
-    background-color: var(--dark-color);
+    background-color: var(--background-color);
     color: var(--text-color);
 }
 
@@ -111,6 +128,36 @@ body.dark-theme {
 .header-hide {
     transform: translateY(-100%);
     transition: transform 0.3s cubic-bezier(.19, 1, .22, 1);;
+}
+
+#theme-switcher {
+    display: block;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 30px;
+    background-color: transparent;
+}
+
+.hidden {
+    opacity: 0;
+    transition: display 0.3s ease
+}
+
+.shown {
+    opacity: 1;
+}
+
+.dark-theme-icon, .light-theme-icon {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+.light-theme-icon {
+    transform: translateY(-32px);
 }
 
 .logo {
