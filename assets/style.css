@@ -111,7 +111,7 @@ body {
 .header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
     position: sticky;
     top: 0;
@@ -129,10 +129,13 @@ body {
     transform: translateY(-100%);
     transition: transform 0.3s cubic-bezier(.19, 1, .22, 1);;
 }
+.name {
+    margin-inline: 50px;
+}
 
 #theme-switcher {
     display: block;
-    position: fixed;
+    /* position: fixed; */
     top: 15px;
     right: 15px;
     width: 40px;
@@ -416,6 +419,7 @@ a:not(.project):hover:after {
         padding: 20px;
     }
 }
+
 
 @media screen and (max-width: 400px) {
     .footer_content {
