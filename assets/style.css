@@ -43,8 +43,9 @@
 .light-theme {
     --background-color: #E5E5E7;
     --text-color: #151515;
-    --content-background: #FFFFFF;
-    --hover-content-background: #F0F0F2;
+    --content-background: #F9F8F9;
+    --content-border-color: #C0C0C0;
+    --hover-content-background: #FFF5FF;
     --header-background: linear-gradient(0deg, rgba(220, 220, 225, 0.2), rgba(220, 220, 225, 1));
     --darker-shadow: #B3B3B8;
     --link-default-color: #1A1A1D;
@@ -199,17 +200,17 @@ body {
 }
 
 .vertical_delimiter {
-    width: 90%;
+    width: 70%;
     height: 2px;
-    background: var(--header-color);
+    background: var(--content-border-color);
     margin: 20px 0;
     border-radius: 10px;
 }
 
 .horizontal_delimiter {
     width: 2px;
-    height: 90%;
-    background: var(--header-color);
+    height: 70%;
+    background: var(--content-border-color);
     margin: 20px 0;
     border-radius: 10px;
 }
