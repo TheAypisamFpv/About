@@ -120,9 +120,7 @@ body {
     overflow-x: hidden; /* Prevents horizontal scrolling */
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
-}
-body {
-    font-family: 'Gotham', sans-serif;
+    font-family: Gotham SSm, sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
 }
@@ -152,6 +150,7 @@ body {
 }
 
 .name {
+    font-size: max(15px, min(5vw, 30px));
     margin-left: 10px;
 }
 
@@ -232,6 +231,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     width:85%;
     margin: 20px;
     gap:10px;
@@ -428,9 +428,9 @@ a:not(.project):hover:after {
 }
 
 @media (max-width: 600px) {
-    .project {
-        max-width: 100%;
-        padding: 20px;
+    .projects {
+        width: 100%;
+        /* padding: 20px; */
     }
 }
 
