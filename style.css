@@ -1,7 +1,6 @@
 :root {
     --dark-color: #000000;
-    --light-color: #ecf0f1;
-    --text-color: #F0F0F0;
+    --text-color: #FCFCFC;
     --content-background: #0a0a0a;
     --header-background: rgba(100, 100, 100, 0.1);
     --darker-shadow: #0d0d0d;
@@ -53,7 +52,7 @@ body {
 body.dark-theme {
     font-family: 'Gotham', sans-serif;
     background-color: var(--dark-color);
-    color: var(--light-color);
+    color: var(--text-color);
 }
 
 
