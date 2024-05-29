@@ -82,26 +82,35 @@ body.dark-theme {
     color: var(--header-color);
 }
 
+.full {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 98%;
+    height: 100%;
+}
 
 .content {
     display: flex;
     flex-direction: column;
     width: 80%;
+    min-width: fit-content;
     margin: 10px;
     padding: 20px;
     background: var(--content-background);
-    border-radius: 20px;
+    border-radius: 50px;
 }
 
 .about_info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
+    width:100%;
+    margin: 20px;
 }
 
 .vertical_delimiter {
-    width: 100%;
+    width: 90%;
     height: 2px;
     background: var(--header-color);
     margin: 20px 0;
@@ -110,34 +119,43 @@ body.dark-theme {
 
 .horizontal_delimiter {
     width: 2px;
-    height: 100%;
+    height: 90%;
     background: var(--header-color);
     margin: 20px 0;
     border-radius: 10px;
 }
 
-.socials {
+.news {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    margin: 20px;
 }
 
-.socials .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-    gap:20px;
-}
-
-.social_content {
+.news .content {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
+    /* gap:100px; */
+}
+
+.news_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
     gap: 20px;
 
+}
+
+iframe {
+    border-radius: 30px;
+    border: none;
 }
 
 h1 {
@@ -195,6 +213,20 @@ footer p {
 .footer_content * {
     color: var(--header-color);
 
+}
+
+.footer_links, footer_projects {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer_links h2, .footer_projects h2 {
+    font-size: 1.5em;
+    color: var(--header-color);
+    margin: 10px;
 }
 
 a {
