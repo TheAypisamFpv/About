@@ -98,7 +98,7 @@ body.dark-theme {
     top: 0;
     width: 100%;
     background: var(--header-background);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(10px);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 0 0 20px 20px;
