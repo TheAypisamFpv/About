@@ -103,7 +103,7 @@
     animation: slideInY 0.3s cubic-bezier(.19, 1, .22, 1) forwards;
 }
 
-a {
+a, button {
     text-decoration: none;
     color: var(--link-default-color);
     -webkit-tap-highlight-color: transparent;
