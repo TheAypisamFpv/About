@@ -434,7 +434,7 @@ a:not(.project):hover:after {
 
 
 
-@media (max-width: 650px) {
+@media (max-width: 850px) {
     .footer_links {
         display: grid;
         grid-gap: 0.5rem;
@@ -445,12 +445,21 @@ a:not(.project):hover:after {
         gap: 20px;
     }
 
-    .project h1 {
+    h1 {
         font-size: 2em;
     }
 
-    .project p {
+    p {
         font-size: 0.9em;
+    }
+
+    .vertical_delimiter {
+        width: 80%;
+    }
+
+    .content ,.news{
+        padding: 0px;
+        margin: 0px;
     }
 }
 
