@@ -177,11 +177,11 @@ body {
 
 .dark-theme-icon, .light-theme-icon {
     cursor: pointer;
-    height: 30px;
+    height: 40px;
     width: 30px;
 }
 .light-theme-icon {
-    transform: translateY(-32px);
+    transform: translateY(-43px);
 }
 
 .logo {
@@ -278,7 +278,6 @@ body {
     --y: 50%;
 }
 
-
 .project * {
     /* not selectable */
     user-select: none;
@@ -288,13 +287,14 @@ a.project:hover {
     transform: scale(1.02);
     background-color: var(--hover-content-background);
     box-shadow: var(--hover-box-shadow);
-    transition: all .6s cubic-bezier(.19, 1, .22, 1);
+    border-color: var(--text-color);
+    transition: all .2s ease;
 }
 
 a.project:active {
     transform: scale(0.98);
     box-shadow: none;
-    transition: all .6s cubic-bezier(.19, 1, .22, 1);
+    transition: all .2s ease;
 }
 
 .description {
