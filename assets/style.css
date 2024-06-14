@@ -293,7 +293,9 @@ a.project:hover {
 
 a.project:active {
     transform: scale(0.98);
-    box-shadow: none;
+    background-color: var(--hover-content-background);
+    box-shadow: var(--hover-box-shadow);
+    border-color: var(--text-color);
     transition: all .2s ease;
 }
 
