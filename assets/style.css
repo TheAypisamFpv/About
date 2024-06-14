@@ -267,7 +267,7 @@ body {
     background: var(--content-background);
     max-width: 500px;
     min-width: 300px;
-    min-height: 300px;
+    min-height: auto;
     margin: 20px;
     padding: 30px;
     border : 2px solid var(--content-border-color);
@@ -443,6 +443,14 @@ a:not(.project):hover:after {
         justify-items: center;
         flex-direction: column;
         gap: 20px;
+    }
+
+    .project h1 {
+        font-size: 2em;
+    }
+
+    .project p {
+        font-size: 0.9em;
     }
 }
 
