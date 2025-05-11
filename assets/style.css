@@ -513,8 +513,14 @@ a:not(.project):hover:after {
     }
 }
 
+@media only screen and (max-device-width: 1000px) {
+    .footer_links {
+        justify-content: space-around;
+    }
+}
+
 /* Specific media query for mobile devices */
-@media only screen and (max-device-width: 900px) {
+@media only screen and (max-device-width: 600px) {
     .footer_links {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -522,7 +528,7 @@ a:not(.project):hover:after {
         justify-items: center;
         align-items: center;
         text-align: center;
-        padding: 15px;
+        padding: 10px;
     }
     
     /* Center the X link specifically when it's in the last row */
@@ -538,7 +544,7 @@ a:not(.project):hover:after {
 }
 
 /* For very small mobile screens */
-@media only screen and (max-device-width: 450px) {
+@media only screen and (max-device-width: 375px) {
     .footer_links {
         grid-template-columns: 1fr;
         grid-gap: 1.2rem;
