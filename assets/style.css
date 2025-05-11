@@ -54,7 +54,7 @@
     --link-underlined-color: #1a1b20;
     --lighter-shadow: #d5d5d5;
     --header-color: #181818;
-    --footer-background: #d0d0d0;
+    --footer-background: #d8d8d8;
     --footer-content-background: #f5f5f5;
     --box-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
     --hover-box-shadow: 5px 5px 20px rgba(0, 0, 0, .15);
@@ -540,18 +540,5 @@ a:not(.project):hover:after {
     /* If X isn't the only item in the last row but needs centering */
     .footer_links a:last-child {
         justify-self: center;
-    }
-}
-
-/* For very small mobile screens */
-@media only screen and (max-device-width: 375px) {
-    .footer_links {
-        grid-template-columns: 1fr;
-        grid-gap: 1.2rem;
-    }
-    
-    /* No need for special centering in a single column */
-    .footer_links a:nth-last-child(1):nth-child(3n-2) {
-        grid-column: auto;
     }
 }
