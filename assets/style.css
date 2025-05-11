@@ -501,14 +501,51 @@ a:not(.project):hover:after {
             padding: 15px;
         }
     
-        /* Center the X link specifically when it's in the last row */
-        .footer_links a:nth-last-child(1):nth-child(3n-2) {
-            grid-column: 1 / span 3;
-            justify-self: center;
-        }
+    /* Center the X link specifically when it's in the last row */
+    .footer_links a:nth-last-child(1):nth-child(3n-2) {
+        grid-column: 1 / span 3;
+        justify-self: center;
+    }
+
+    /* If X isn't the only item in the last row but needs centering */
+    .footer_links a:last-child {
+        justify-self: center;
+    }
+}
+
+/* Specific media query for mobile devices */
+@media only screen and (max-device-width: 900px) {
+    .footer_links {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1rem;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+    }
     
-        /* If X isn't the only item in the last row but needs centering */
-        .footer_links a:last-child {
-            justify-self: center;
-        }
+    /* Center the X link specifically when it's in the last row */
+    .footer_links a:nth-last-child(1):nth-child(3n-2) {
+        grid-column: 1 / span 3;
+        justify-self: center;
+    }
+    
+    /* If X isn't the only item in the last row but needs centering */
+    .footer_links a:last-child {
+        justify-self: center;
+    }
+}
+
+/* For very small mobile screens */
+@media only screen and (max-device-width: 450px) {
+    .footer_links {
+        grid-template-columns: 1fr;
+        grid-gap: 1.2rem;
+    }
+    
+    /* No need for special centering in a single column */
+    .footer_links a:nth-last-child(1):nth-child(3n-2) {
+        grid-column: auto;
+    }
 }
