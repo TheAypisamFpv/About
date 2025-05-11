@@ -490,10 +490,7 @@ a:not(.project):hover:after {
         padding: 0px;
         margin: 0px;
     }
-}
 
-
-@media (max-width: 700px) {
     .footer_links {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
