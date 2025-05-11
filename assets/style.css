@@ -274,27 +274,22 @@ body {
     min-width: 300px;
     min-height: auto;
     margin: 20px;
-    padding: 30px;
+    padding: 20px;
     border : 2px solid var(--content-border-color);
-    border-radius: 40px;
-    gap:10px;
+    border-radius: 50px;
+    gap: 10px;
     box-shadow: var(--box-shadow);
     --x: 50%;
     --y: 50%;
 }
 
-img {
+img, iframe {
     width: 100%;
-    height: auto;
-    border-radius: 20px;
-    margin-bottom: 5px;
+    border-radius: 30px;
 }
 
 iframe {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    border: none;
+    aspect-ratio: 16 / 9;
 }
 
 a.project:hover {
@@ -313,15 +308,27 @@ a.project:active {
     transition: all .2s ease;
 }
 
-.description {
+.description .description_text {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    margin: 20px;
-    gap:10px;
+    gap:15px;
+}
 
+.description_text {
+    margin-top: 10px;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap:10px;
 }
 
 a.non-clickable {
@@ -351,6 +358,7 @@ p {
 p.note {
     color : var(--note-color);
     font-size: 1em;
+    margin: 5px;
 }
 
 footer {
