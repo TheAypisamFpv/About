@@ -417,7 +417,12 @@ footer p {
     margin: 10px;
 }
 
-
+.footer_credits {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
 
 .footer_credits p {
     font-size: small;
