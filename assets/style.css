@@ -476,6 +476,15 @@ a:not(.project):hover:after {
 
 
 @media (max-width: 850px) {
+
+    .header {
+        justify-content: space-between;
+    }
+
+    .header * {
+        margin: 0 7px
+    }
+
     h1 {
         font-size: 2em;
     }
@@ -505,7 +514,7 @@ a:not(.project):hover:after {
             align-items: center;
             text-align: center;
             padding: 15px;
-        }
+    }
     
     /* Center the X link specifically when it's in the last row */
     .footer_links a:nth-last-child(1):nth-child(3n-2) {
