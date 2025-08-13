@@ -237,7 +237,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width:85%;
+    width:75%;
     margin: 20px;
     gap:10px;
 }
@@ -251,6 +251,13 @@ body {
     margin: 20px;
     gap: 20px;
 
+}
+
+.info_content p {
+    font-size: 1em;
+    line-height: 1.6;
+    border-radius: 20px;
+    /* padding: 20px; */
 }
 
 .projects {
@@ -475,7 +482,7 @@ a:not(.project):hover:after {
 
 
 
-@media (max-width: 850px) {
+@media (max-width: 1000px) {
 
     .header {
         justify-content: space-between;
@@ -504,6 +511,10 @@ a:not(.project):hover:after {
     .content ,.news{
         padding: 0px;
         margin: 0px;
+    }
+
+    .about_info {
+        width: 90%;
     }
 
     .footer_links {
