@@ -147,6 +147,34 @@ body {
     transition: transform 0.3s cubic-bezier(.19, 1, .22, 1);
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.portfolio-link {
+    color: var(--header-color);
+    font-size: max(12px, min(2.5vw, 18px));
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 2px solid var(--header-color);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.portfolio-link:hover {
+    background-color: var(--header-color);
+    color: var(--darker-background-color);
+    transform: scale(1.05);
+}
+
+.portfolio-link:after {
+    display: none !important;
+}
+
 .header-hide {
     transform: translateY(-100%);
     
@@ -490,6 +518,15 @@ a:not(.project):hover:after {
 
     .header * {
         margin: 0 7px
+    }
+
+    .header-left {
+        gap: 10px;
+    }
+
+    .portfolio-link {
+        font-size: 14px;
+        padding: 6px 12px;
     }
 
     h1 {
