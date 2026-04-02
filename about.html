@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="The Aypisam FPV">
     <meta name="description" content="The Aypisam FPV's personal website">
-    <meta version="6.9.5">
+    <meta version="6.9.6">
     <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="shortcut icon" href="assets/favicon.ico" />
@@ -118,12 +118,12 @@
                 </div>
             </a>
             
-            <a class="project" href="https://github.com/TheAypisamFpv/Autopilot/tree/Autopilot-CustomModel" target="_blank">
+            <a class="project" href="https://github.com/TheAypisamFpv/Autopilot" target="_blank">
                 <h1>Autopilot</h1>
                 <div class="description">
                     <div class="description_text">
-                        <p>A vision-only CNN-Transformer model that predicts vehicle trajectory from two consecutive front-camera frames.</p>
-                        <p>It outputs 12 (x, y) displacement vectors over a ~3-second horizon using non-uniform vectorTimes, currently training on the NVIDIA PhysicalAI-Autonomous-Vehicles dataset.</p>
+                        <p>Vision-based trajectory planning from two consecutive front camera frames, with optional ego-history context and a non-uniform 3-second prediction horizon.</p>
+                        <p>The current primary model is Motion-FPN + Cross-Attention Kinematic V2, outputting 12 future kinematic states (speed_mps, yawRate_radps). It is currently training on the NVIDIA PhysicalAI-Autonomous-Vehicles dataset.</p>
                         <p>Video below shows a legacy Early Fusion + Attentive GRU model demo.</p>
                     </div>
                     <img src="https://github.com/TheAypisamFpv/Autopilot/raw/Autopilot-CustomModel/images/visualization/Autopilot_TrajectoryModel_EarlyFusion_AttentiveGRU_epoch19_timelapse.gif" alt="Autopilot Visualization">
