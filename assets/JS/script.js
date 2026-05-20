@@ -43,5 +43,5 @@ themeSwitcher.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', function() {
     const currentYear = new Date().getFullYear();
     const footerCredits = document.querySelector('.footer_credits p');
-    footerCredits.textContent = `© ${currentYear} TheAypisamFpv`;
+    footerCredits.textContent = `© ${currentYear} The Aypisam FPV`;
 });
