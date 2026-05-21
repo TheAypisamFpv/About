@@ -181,6 +181,7 @@ body {
 }
 
 .name {
+    display: flex;
     font-size: max(15px, min(5vw, 30px));
     margin-left: 10px;
 }
@@ -414,7 +415,8 @@ footer {
     min-height: 100px;
     width: 100%;
     padding: 20px 20px 10px 20px;
-    background: var(--footer-background);    
+    background: var(--footer-background);
+    color: var(--header-color);
 }
 
 footer p {
@@ -476,7 +478,7 @@ footer p {
     padding: 0;
 }
 
-.footer_credits img {
+.footer_credits svg {
     display: flex;
     max-height: 60%;
     width: auto;
@@ -636,7 +638,7 @@ a:not(.project):hover:after {
         margin-bottom: 15px;
     }
 
-    .footer_credits img {
+    .footer_credits svg {
         display: none;
     }
 
