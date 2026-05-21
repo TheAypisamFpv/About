@@ -153,6 +153,7 @@ body {
     gap: 20px;
 }
 
+
 .portfolio-link {
     color: var(--header-color);
     font-size: max(12px, min(2.5vw, 18px));
@@ -162,7 +163,6 @@ body {
     border: 2px solid var(--header-color);
     border-radius: 20px;
     transition: all 0.3s ease;
-    white-space: nowrap;
 }
 
 .portfolio-link:hover {
@@ -406,7 +406,7 @@ h1 {
 footer {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin-top: auto;
     flex-shrink: 0;
     border-radius: 40px 40px 0 0;
@@ -478,7 +478,13 @@ footer p {
 
 .footer_credits img {
     display: flex;
-    height: 60%;
+    max-height: 60%;
+    width: auto;
+}
+
+.mobile-logo {
+    display: none;
+    max-height: 60%;
     width: auto;
 }
 
@@ -619,5 +625,25 @@ a:not(.project):hover:after {
     /* If X isn't the only item in the last row but needs centering */
     .footer_links a:last-child {
         justify-self: center;
+    }
+
+    .mobile-logo {
+        display: flex;
+        /* max-height: 60%; */
+        /* width: auto; */
+        max-width: 80%;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .footer_credits img {
+        display: none;
+    }
+
+    footer {
+        padding-bottom: 0;
+    }
+    .footer_credits {
+        height: 50px;
     }
 }
