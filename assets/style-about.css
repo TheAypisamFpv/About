@@ -1,0 +1,85 @@
+/* style-about.css: About only, loaded last.
+   Cut-corner borders, gold hover and fades: see style-common.css, section 11. */
+
+/* Photography Portfolio link: small plain rectangular button on the carbon header. On hover its border takes the
+   champagne gradient of the name (top to bottom), fading from the grey line (style-common.css, --ui-cut-*). */
+.portfolio-link {
+    font-size: max(10px, min(1.6vw, 12px));
+    text-transform: uppercase;
+    letter-spacing: .22em;
+    color: var(--ui-text);
+    background: transparent;
+    border: 1px solid var(--ui-line);
+    border-image: linear-gradient(180deg, var(--ui-cut-top), var(--ui-cut-mid) 55%, var(--ui-cut-bot)) 1;
+    padding: 9px 18px;
+    transition: --ui-cut-top .3s ease, --ui-cut-mid .3s ease, --ui-cut-bot .3s ease, var(--ui-fade-hover);
+}
+.portfolio-link:hover, .portfolio-link:focus-visible {
+    --ui-cut-top: var(--ui-gold-top);
+    --ui-cut-mid: var(--ui-champ);
+    --ui-cut-bot: var(--ui-champ-lo);
+    background: transparent;
+    color: var(--ui-text);
+    box-shadow: none;
+    transform: none;
+}
+
+/* Section headings (ABOUT ME, LATEST NEWS, MY PROJECTS): same size, same hierarchy */
+.full > h1, .full > .about_info > h1, .full > .news > h1 {
+    font-size: clamp(1.6rem, 1.1rem + 2vw, 2.6rem);
+}
+/* Text of the About me and Latest news sections */
+.info_content p, .news_content p {
+    font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+    line-height: 1.6;
+}
+
+/* First block: hero without image, compact, gold line along the bottom edge (the frame champagne running along the
+   1 px line: light centre, darker ends) */
+.full > .about_info:first-child {
+    width: 100%;
+    justify-content: center;
+    padding: 24px 20px 36px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--ui-gold);
+    border-image: linear-gradient(90deg, var(--ui-frame-bot), var(--ui-frame-mid) 25%, var(--ui-frame-top) 50%, var(--ui-frame-mid) 75%, var(--ui-frame-bot)) 1;
+}
+.full > .about_info:first-child > h1 { margin-right: -.22em; }
+.full > .about_info:first-child > h1::after {
+    content: "";
+    display: block;
+    width: min(60vw, 520px);
+    height: var(--ui-bar-h);
+    margin: 20px auto 0;
+    background: var(--ui-double-bar);
+}
+.info_content p { color: var(--ui-text-2); }
+
+/* Projects: carbon panels with cut corners on a light background (shape, background and border: style-common.css, section 11). */
+.projects { gap: 16px; }
+a.project:not(.non-clickable) {
+    transition: transform .33s var(--ui-ease-lift), filter .33s ease,
+        --ui-cut-top .3s ease, --ui-cut-mid .3s ease, --ui-cut-bot .3s ease, var(--ui-fade-hover);
+}
+/* Hover, both themes: the card lifts 4 px. */
+a.project:not(.non-clickable):hover,
+a.project:not(.non-clickable):focus-visible {
+    transform: translateY(-4px);
+}
+/* Light theme: a small dark shadow around the cut outline gives the gold border a contrasting edge, and a soft drop
+   shadow underneath shows the lift. Both follow the cut corners. */
+body.light-theme a.project:not(.non-clickable):hover,
+body.light-theme a.project:not(.non-clickable):focus-visible {
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, .45)) drop-shadow(0 4px 4px rgba(0, 0, 0, .25));
+}
+.project h1 { font-size: 1.05em; letter-spacing: .2em; }
+.project p { color: var(--ui-text-2); }
+.project p.note {
+    color: var(--ui-metal);
+    text-transform: uppercase;
+    letter-spacing: var(--ui-track-caption);
+    font-size: .72em;
+}
+img, iframe { border-radius: var(--ui-radius-media); }
+/* The hero already carries the light bar: the following separator is hidden to avoid a duplicate. */
+.full > .about_info:first-child + .vertical_delimiter { display: none; }

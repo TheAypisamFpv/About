@@ -12,11 +12,17 @@
     <link rel="shortcut icon" href="assets/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
     <link rel="manifest" href="assets/site.webmanifest" />
+    <link rel="preload" href="assets/fonts/Michroma-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Inter-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/tokens.css">
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style-common.css">
+    <link rel="stylesheet" href="assets/style-about.css">
     <script src="assets/JS/script.js" async></script>
     <title>The Aypisam FPV</title>
 </head>
 <body class="dark-theme">
+    <script>try { if (localStorage.getItem('theme') === 'light') document.body.classList.replace('dark-theme', 'light-theme'); } catch (e) {}</script>
     <header id="header" class="header">
         <div class="header-left">
             <h1 class="name"><a href="https://www.youtube.com/watch?v=xvFZjo5PgG0" target="_blank">The Aypisam FPV</a></h1>
@@ -105,6 +111,19 @@
         
         <h1>My Projects</h1>
         <div class="projects">
+
+            <a class="project non-clickable" href="javascript:void(0);" target="">
+                <h1>SPARC</h1>
+                <div class="description">
+                    <div class="description_text">
+                        <p>Synthetic Pair-to-Arc Recovery of Candidates: an AI pipeline that finds moving objects such as asteroids in sky images, from raw detections to fitted orbits.</p>
+                        <p>A neural network detects and scores sources with a calibrated per-detection uncertainty, detections are paired into same-night tracklets, then an MLP scorer links tracklets into multi-night arcs that are fitted with a two-body Kepler ranging step. Every stage is validated on its own, with strict checks on reproducibility (fixed seeds, pinned runs), data leakage and calibration.</p>
+                        <p>Trained on synthetic skies, now being tested on real ZTF frames. Runs on CUDA with an RTX 2060.</p>
+                    </div>
+                    <p class="note">Note: This is an in-progress project and is not publicly available yet.</p>
+                    <img src="assets/sparc-orbits.png" alt="SPARC orbit viewer">
+                </div>
+            </a>
 
             <a class="project non-clickable" href="javascript:void(0);" target="">
                 <h1>DockSight</h1>

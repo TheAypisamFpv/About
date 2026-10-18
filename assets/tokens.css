@@ -1,0 +1,181 @@
+/* tokens.css: site design tokens (colours, shapes, typography). Same file in About and Photography-Portfolio. */
+/* Michroma-Regular.ttf is Michroma 1.100 (Google Fonts, SIL OFL 1.1, see fonts/OFL-Michroma.txt) with kerning pairs
+   added: the font kerned YA and TA but not their mirrors. Added in a separate GPOS lookup of the "kern" feature:
+   AY -380, AT -326, AV -260, VA -260 (units per em 2048). The original kerning is unchanged. */
+@font-face {
+    font-family: "Michroma";
+    src: url(fonts/Michroma-Regular.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url(fonts/Inter-Variable-latin.woff2) format("woff2");
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Light theme: cool white background. Carbon is the accent (header, footer, cards, buttons). */
+:root {
+    /* Page: cool white */
+    --ui-bg: #E8E9EC;            /* cool white */
+    --ui-text: #090A0C;          /* carbon, 16.3:1 on #E8E9EC */
+    /* Neutral greys and darks (R = G = B). Only the page whites keep their slight coolness. */
+    --ui-text-2: #505050;        /* secondary grey, 6.6:1 on #E8E9EC, 6.1:1 on #DEDFE3 */
+    --ui-line: #B3B3B3;          /* shaded white, decorative only */
+    /* Carbon areas (fixed values, same in both themes) */
+    --ui-carbon-bg: #090A0C;     /* carbon */
+    --ui-carbon-surface: #0A0A0A;/* card background, neutral */
+    --ui-carbon-weave: #1A1A1A;  /* light thread of the carbon weave */
+    --ui-carbon-text: #E8E9EC;   /* 16.3:1 on #0A0A0A */
+    --ui-carbon-text-2: #ABABAB; /* light grey, 8.6:1 on #0A0A0A */
+    --ui-carbon-line: #353535;   /* subtle line, decorative */
+    --ui-glass: rgba(9, 10, 12, .86); /* header: tinted glass over carbon */
+    --ui-metal: #B3B3B3;
+    --ui-strip: #EFEDE9;         /* light line */
+    /* Red of the light bars (never used for body text) */
+    --ui-lightbar: #FA012C;
+    --ui-accent: #EE252E;
+    --ui-accent-glow: rgba(238, 37, 46, .55);
+    /* Metal ring (focus and hover) */
+    --ui-ring: #A48F84;
+    /* Champagne gradient of the name: only on carbon (10.8:1), never on a light background (1.5:1) */
+    --ui-champ-hi: #FCF2E9;
+    --ui-champ: #CCBEA1;
+    --ui-champ-lo: #B0A17B;
+    /* Gold: decorative only (lines, borders). Never gold text on a light background (1.5:1). */
+    --ui-gold: #CCBEA1;
+    --ui-gold-shadow: #B0A17B;
+    --ui-gold-hi: #FCF2E9;
+    /* Top of the gold gradients of frames, button border and header line: golden, not white (the name keeps --ui-champ-hi) */
+    --ui-gold-top: #E2D1AC;
+    /* Geometry */
+    /* A single diagonal: 57° from the horizontal. tan(57°) = 1.54, so cut = x horizontal, 1.54x vertical. */
+    --ui-cut-x: 8px;  --ui-cut-y: 12px;          /* buttons: 8 x 12 px (12/8 = 1.5, closest to 1.54) */
+    --ui-cut-x-card: 14px; --ui-cut-y-card: 22px; /* cards: 14 x 22 px (22/14 = 1.57) */
+    /* Strict symmetry: both top corners are cut, the bottom stays flat.
+       The straight edges of the clip sit 2 px outside the box, the diagonals are unchanged: the real CSS border on the
+       straight edges is never clipped, so it stays crisp at any display scale (125%, 150%...).
+       Moving the ends of a diagonal 2 px out along it: buttons 8 x 12 -> +1.3333px on x, +3px on y;
+       cards 14 x 22 -> +1.2727px on x, +3.1429px on y. */
+    --ui-shape-btn: polygon(calc(var(--ui-cut-x) + 1.3333px) -2px, calc(100% - var(--ui-cut-x) - 1.3333px) -2px,
+        calc(100% + 2px) calc(var(--ui-cut-y) + 3px), calc(100% + 2px) calc(100% + 2px),
+        -2px calc(100% + 2px), -2px calc(var(--ui-cut-y) + 3px));
+    --ui-shape-card: polygon(calc(var(--ui-cut-x-card) + 1.2727px) -2px, calc(100% - var(--ui-cut-x-card) - 1.2727px) -2px,
+        calc(100% + 2px) calc(var(--ui-cut-y-card) + 3.1429px), calc(100% + 2px) calc(100% + 2px),
+        -2px calc(100% + 2px), -2px calc(var(--ui-cut-y-card) + 3.1429px));
+    /* Border on cut corners (see style-common.css, section 11): a gold silhouette (outer outline) under a fill cut to
+       the inner outline, offset by w. Both are geometric shapes, so both edges are smoothed the same way on the
+       straight edges and on the diagonals.
+       2 px: at 125% / 150% display scaling a thin line that starts between two physical pixels is shared by both and
+       looks dimmer than the same line on a pixel boundary, so one side of a card looked weaker than the other.
+       At 2 px every side keeps at least one, usually two, fully coloured physical pixels.
+       The light theme uses 2.5 px (see body.light-theme). The room kept for the stroke follows it, so the stroke edges
+       stay on whole pixels in dark (cards are 1 px larger in light, not noticeable). */
+    --ui-border-w: 2px;
+    /* Double light bar: top, gap, bottom = 2.2 : 2.7 : 1, unit 1.5 px. */
+    --ui-u: 1.5px;
+    --ui-bar-top: calc(var(--ui-u) * 2.2);   /* 3.3 px */
+    --ui-bar-gap: calc(var(--ui-u) * 2.7);   /* 4.05 px */
+    --ui-bar-bot: var(--ui-u);               /* 1.5 px */
+    --ui-bar-h: calc(var(--ui-u) * 5.9);     /* 8.85 px in total */
+    /* Shapes and motion */
+    --ui-radius-media: 2px;
+    --ui-ease: cubic-bezier(.19, 1, .22, 1);
+    --ui-dur: .4s;
+    /* Typography */
+    --ui-font-display: "Michroma", "Inter", sans-serif;
+    --ui-font-body: "Inter", sans-serif; /* Gotham SSm only with a web licence */
+    --ui-track-display: .22em;
+    --ui-track-caption: .2em;
+    /* Patterns */
+    --ui-carbon: repeating-linear-gradient(45deg, var(--ui-carbon-bg) 0 2px, var(--ui-carbon-weave) 2px 4px);
+    /* Gradient centre: 80% white / 20% red (= #FECCD5). 85/15 alternative: #FED9DF. */
+    --ui-lightbar-gradient: linear-gradient(90deg, transparent, var(--ui-lightbar) 12%, color-mix(in srgb, #FFFFFF 80%, var(--ui-lightbar)) 50%, var(--ui-lightbar) 88%, transparent);
+    --ui-double-bar: var(--ui-lightbar-gradient) top / 100% var(--ui-bar-top) no-repeat,
+                     var(--ui-lightbar-gradient) bottom / 100% var(--ui-bar-bot) no-repeat;
+    /* Card background: neutral veil over the carbon weave (light enough to let the weave show) */
+    --ui-card-fill: linear-gradient(180deg, rgba(10, 10, 10, .66), rgba(10, 10, 10, .76)), var(--ui-carbon);
+    /* Card hover in light theme: lift */
+    --ui-ease-lift: cubic-bezier(.5, 0, 0, .75);
+    /* Colour fades (theme and hover) */
+    --ui-fade-theme: background-color .35s ease, color .35s ease, border-color .35s ease, fill .35s ease;
+    --ui-fade-hover: background-color .3s ease, color .3s ease, border-color .3s ease, fill .3s ease;
+    --ui-ring-focus: 0 0 0 2px var(--ui-ring);
+    --ui-champ-gradient: linear-gradient(180deg, var(--ui-champ-hi), var(--ui-champ) 55%, var(--ui-champ-lo));
+}
+
+/* Gold frames (hover border of cards, sections and chips, hero line): the champagne gradient of the name, lit from
+   above (light top, darker bottom). On the light page the same look is shifted darker, so its top stays visible. */
+body.dark-theme {
+    --ui-frame-top: var(--ui-gold-top);
+    --ui-frame-mid: var(--ui-champ);
+    --ui-frame-bot: var(--ui-champ-lo);
+    /* Link hover line: the name's gold */
+    --ui-link-gold: var(--ui-gold);
+    --ui-link-gold-hi: var(--ui-gold-hi);
+}
+body.light-theme {
+    --ui-frame-top: #C9BA97;
+    --ui-frame-mid: #B0A17B;
+    --ui-frame-bot: #8E7F5A;
+    /* Link hover line on the light page: darker gold, so its centre stays visible */
+    --ui-link-gold: var(--ui-frame-mid);
+    --ui-link-gold-hi: var(--ui-frame-top);
+    /* Gold border 25% wider on the light page (2.5 px instead of 2 px) */
+    --ui-border-w: 2.5px;
+}
+/* Inner outline of the cut shapes, in the coordinates of the fill (the border box inset by w). Declared on body so it
+   follows the theme's border width. On the diagonal, the inner line is offset by w perpendicularly, so its ends are
+   x = cx + w * (sqrt(1 + (cx/cy)^2) - cx/cy - 1)  and  y = cy + w * (sqrt(1 + (cy/cx)^2) - cy/cx - 1).
+   Buttons 8 x 12: x = cx - 0.4648w, y = cy - 0.6972w. Cards 14 x 22: x = cx - 0.4511w, y = cy - 0.7088w.
+   If the --ui-cut-* ratio changes, recompute these 4 coefficients and the clip extensions of --ui-shape-*. */
+body {
+    --ui-shape-btn-inner: polygon(
+        calc(var(--ui-cut-x) - .4648 * var(--ui-border-w)) 0, calc(100% - var(--ui-cut-x) + .4648 * var(--ui-border-w)) 0,
+        100% calc(var(--ui-cut-y) - .6972 * var(--ui-border-w)), 100% 100%, 0 100%, 0 calc(var(--ui-cut-y) - .6972 * var(--ui-border-w)));
+    --ui-shape-card-inner: polygon(
+        calc(var(--ui-cut-x-card) - .4511 * var(--ui-border-w)) 0, calc(100% - var(--ui-cut-x-card) + .4511 * var(--ui-border-w)) 0,
+        100% calc(var(--ui-cut-y-card) - .7088 * var(--ui-border-w)), 100% 100%, 0 100%, 0 calc(var(--ui-cut-y-card) - .7088 * var(--ui-border-w)));
+}
+
+/* Dark theme (optional, through the existing button): the page turns carbon. */
+body.dark-theme {
+    --ui-bg: #020204;
+    --ui-text: #E8E9EC;
+    --ui-text-2: #ABABAB;
+    --ui-line: #353535;
+}
+
+/* Carbon areas: text goes back to light, in both themes. */
+.header, footer, .project, .photo-section, #toc li, .portfolio-link, .arrow, .share-btn, #image-modal {
+    --ui-text: var(--ui-carbon-text);
+    --ui-text-2: var(--ui-carbon-text-2);
+    --ui-line: var(--ui-carbon-line);
+    --ui-link-gold: var(--ui-gold);
+    --ui-link-gold-hi: var(--ui-gold-hi);
+}
+
+/* Mapping to the existing variables: the current CSS keeps working. */
+body, body.light-theme, body.dark-theme,
+.header, footer, .project, .photo-section, #toc li, .portfolio-link, .arrow, .share-btn, #image-modal {
+    --background-color: var(--ui-bg);
+    --text-color: var(--ui-text);
+    --inverted-text-color: var(--ui-bg);
+    --note-color: var(--ui-text-2);
+    --content-background: var(--ui-carbon-surface);
+    --content-border-color: var(--ui-line);
+    --hover-content-background: var(--ui-carbon-bg);
+    --darker-background-color: var(--ui-bg);
+    --header-background: var(--ui-glass);
+    --link-default-color: var(--ui-text);
+    --link-underlined-color: var(--ui-accent);
+    --header-color: var(--ui-text);
+    --footer-background: var(--ui-carbon-bg);
+    --footer-content-background: transparent;
+    --arrow-color: var(--ui-text-2);
+    --high-res-viewer-bg: rgba(9, 10, 12, .95);
+}
