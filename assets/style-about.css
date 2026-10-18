@@ -14,10 +14,21 @@
     padding: 9px 18px;
     transition: --ui-cut-top .3s ease, --ui-cut-mid .3s ease, --ui-cut-bot .3s ease, var(--ui-fade-hover);
 }
-.portfolio-link:hover, .portfolio-link:focus-visible {
+.portfolio-link:focus-visible {
     --ui-cut-top: var(--ui-gold-top);
     --ui-cut-mid: var(--ui-champ);
     --ui-cut-bot: var(--ui-champ-lo);
+    box-shadow: none;
+}
+@media (hover: hover) {
+    .portfolio-link:hover {
+        --ui-cut-top: var(--ui-gold-top);
+        --ui-cut-mid: var(--ui-champ);
+        --ui-cut-bot: var(--ui-champ-lo);
+    }
+}
+/* The original hover (style.css: filled background, 105% scale) is neutralised everywhere, touch screens included */
+.portfolio-link:hover {
     background: transparent;
     color: var(--ui-text);
     box-shadow: none;
@@ -61,18 +72,25 @@ a.project {
     transition: transform .33s var(--ui-ease-lift), filter .33s ease,
         --ui-cut-top .3s ease, --ui-cut-mid .3s ease, --ui-cut-bot .3s ease, var(--ui-fade-hover);
 }
-/* Hover, both themes: the card lifts 4 px (projects without a public link too, with their red frame). */
-a.project:hover,
+/* Hover (mouse) or is-current (touch), both themes: the card lifts 4 px (projects without a public link too, with
+   their red frame). */
 a.project:focus-visible,
 a.project.is-current {
     transform: translateY(-4px);
 }
+@media (hover: hover) {
+    a.project:hover { transform: translateY(-4px); }
+}
 /* Light theme: a small dark shadow around the cut outline gives the gold border a contrasting edge, and a soft drop
    shadow underneath shows the lift. Both follow the cut corners. */
-body.light-theme a.project:hover,
 body.light-theme a.project:focus-visible,
 body.light-theme a.project.is-current {
     filter: drop-shadow(0 0 4px rgba(0, 0, 0, .45)) drop-shadow(0 4px 4px rgba(0, 0, 0, .25));
+}
+@media (hover: hover) {
+    body.light-theme a.project:hover {
+        filter: drop-shadow(0 0 4px rgba(0, 0, 0, .45)) drop-shadow(0 4px 4px rgba(0, 0, 0, .25));
+    }
 }
 /* Press: the card drops back to 1 px, quickly, and in light theme the shadow tightens (pushed in).
    Projects without a public link have no press state, they keep their hover look. */
