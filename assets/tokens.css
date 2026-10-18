@@ -52,6 +52,10 @@
     --ui-gold-hi: #FCF2E9;
     /* Top of the gold gradients of frames, button border and header line: golden, not white (the name keeps --ui-champ-hi) */
     --ui-gold-top: #E2D1AC;
+    /* Red frame of projects without a public link (hover): same top-to-bottom gradient as the gold frames */
+    --ui-red-top: #FF6B7A;
+    --ui-red-mid: #EE252E;
+    --ui-red-bot: #9E0F1A;
     /* Geometry */
     /* A single diagonal: 57° from the horizontal. tan(57°) = 1.54, so cut = x horizontal, 1.54x vertical. */
     --ui-cut-x: 8px;  --ui-cut-y: 12px;          /* buttons: 8 x 12 px (12/8 = 1.5, closest to 1.54) */
@@ -114,6 +118,8 @@ body.dark-theme {
     --ui-frame-top: var(--ui-gold-top);
     --ui-frame-mid: var(--ui-champ);
     --ui-frame-bot: var(--ui-champ-lo);
+    /* Pressed frame: the light gold of the gradient top over the whole frame */
+    --ui-frame-press: var(--ui-gold-top);
     /* Link hover line: the name's gold */
     --ui-link-gold: var(--ui-gold);
     --ui-link-gold-hi: var(--ui-gold-hi);
@@ -122,6 +128,7 @@ body.light-theme {
     --ui-frame-top: #C9BA97;
     --ui-frame-mid: #B0A17B;
     --ui-frame-bot: #8E7F5A;
+    --ui-frame-press: #C9BA97;
     /* Link hover line on the light page: darker gold, so its centre stays visible */
     --ui-link-gold: var(--ui-frame-mid);
     --ui-link-gold-hi: var(--ui-frame-top);

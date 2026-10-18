@@ -67,8 +67,43 @@ if (document.readyState === 'loading') {
     initTheme();
 }
 
+// Touch screens have no hover: the element most visible on screen gets the
+// is-current class, styled like the hover state (style-common.css).
+function highlightMostVisible(selector) {
+    if (!window.matchMedia('(hover: none)').matches) return;
+    let current = null;
+    let frame = 0;
+    const update = () => {
+        frame = 0;
+        let best = null;
+        let bestVisible = 0;
+        document.querySelectorAll(selector).forEach(el => {
+            const r = el.getBoundingClientRect();
+            const visible = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+            if (visible > bestVisible) { bestVisible = visible; best = el; }
+        });
+        if (best !== current) {
+            if (current) current.classList.remove('is-current');
+            if (best) best.classList.add('is-current');
+            current = best;
+        }
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    schedule();
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => highlightMostVisible('.project'));
+} else {
+    highlightMostVisible('.project');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const currentYear = new Date().getFullYear();
     const footerCredits = document.querySelector('.footer_credits p');
     footerCredits.textContent = `© ${currentYear} The Aypisam FPV`;
 });
+
+// iOS Safari only applies :active (press styles) on tap when the page listens to touches
+document.addEventListener('touchstart', () => {}, { passive: true });

@@ -87,6 +87,11 @@ a, button, h1, h2, p, footer, .footer_content, .signature-logo, #theme-switcher 
     background-size: 0% 2.2px;
 }
 .name a:not(.project):hover:after { background-size: 100% 2.2px; }
+.name a:not(.project):active:after {
+    background-size: 100% 2.2px;
+    background-image: linear-gradient(90deg, transparent, var(--ui-gold-hi) 12%, var(--ui-gold-hi) 88%, transparent);
+    transition-duration: 80ms;
+}
 
 /* 5. Headings */
 h1, h2 {
@@ -129,6 +134,12 @@ a:not(.project):hover:after {
     background-size: 100% 2.2px;
     transform: none;
     transition-duration: .6s;
+}
+/* Press: the line is fully drawn at once and brighter */
+a:not(.project):active:after {
+    background-size: 100% 2.2px;
+    background-image: linear-gradient(90deg, transparent, var(--ui-link-gold-hi) 12%, var(--ui-link-gold-hi) 88%, transparent);
+    transition-duration: 80ms;
 }
 
 /* 8. Keyboard focus: metal ring (cut-corner elements change their border colour instead, see 11) */
@@ -252,12 +263,20 @@ footer, footer p, footer a { font-family: var(--ui-font-display); }
    page, shifted darker on the light page), plus, in light theme, a small dark shadow around the shape so the gold line
    has a contrasting edge on the light page. */
 a.project:not(.non-clickable):hover, a.project:not(.non-clickable):focus-visible,
-.photo-section:hover, #toc li:hover, #toc li:focus-within {
+.photo-section:hover, #toc li:hover, #toc li:focus-within,
+a.project.is-current:not(.non-clickable), .photo-section.is-current {
     --ui-cut-top: var(--ui-frame-top);
     --ui-cut-mid: var(--ui-frame-mid);
     --ui-cut-bot: var(--ui-frame-bot);
 }
-body.light-theme .photo-section:hover, body.light-theme #toc li:hover, body.light-theme #toc li:focus-within {
+/* Projects without a public link: same hover, with a red frame instead of the gold one */
+a.project.non-clickable:hover, a.project.non-clickable:focus-visible, a.project.non-clickable.is-current {
+    --ui-cut-top: var(--ui-red-top);
+    --ui-cut-mid: var(--ui-red-mid);
+    --ui-cut-bot: var(--ui-red-bot);
+}
+body.light-theme .photo-section:hover, body.light-theme #toc li:hover, body.light-theme #toc li:focus-within,
+body.light-theme .photo-section.is-current {
     filter: drop-shadow(0 0 4px rgba(0, 0, 0, .45));
 }
 /* The original rules (style.css, components.css) change background, border and scale on hover: neutralised here. */
@@ -268,6 +287,16 @@ a.project, a.project:hover, a.project:active, a.project:focus-visible, a.non-cli
     transform: none;
 }
 #toc li:hover { box-shadow: none; }
+/* Press (click or tap): quick (80 ms) and distinct from hover. The frame turns to its light colour over its whole
+   height, the section buttons go down 1 px. The project cards drop back down (style-about.css).
+   Projects without a public link cannot be clicked: they keep their hover look, with no press state. */
+a.project:not(.non-clickable):active, .photo-section:active, #toc li:active {
+    --ui-cut-top: var(--ui-frame-press);
+    --ui-cut-mid: var(--ui-frame-press);
+    --ui-cut-bot: var(--ui-frame-press);
+    transition-duration: 80ms;
+}
+#toc li:active { transform: translateY(1px); }
 
 /* 10. Reduced motion: no animation, no transition, no lift.
    .animate starts at opacity: 0 and only reaches 1 through the animation: make it visible directly. */
