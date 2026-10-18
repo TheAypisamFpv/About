@@ -130,7 +130,8 @@ a:not(.project):after {
     background-repeat: no-repeat;
     background-size: 0% 2.2px;
     transform: none;
-    transition: background-size .6s var(--ui-ease);
+    /* Gentle curve: drawn from the centre, the expo curve of --ui-ease had most of the line out in the first 150 ms */
+    transition: background-size .6s cubic-bezier(.4, 0, .2, 1);
 }
 /* Real hover only with a mouse: on touch screens a tap would leave it stuck on the tapped element */
 @media (hover: hover) {
@@ -269,7 +270,7 @@ footer, footer p, footer a { font-family: var(--ui-font-display); }
    has a contrasting edge on the light page.
    The real :hover only applies with a mouse (hover: hover); touch screens get the same look through is-current
    (the element nearest the centre of the screen), so a tap never leaves a hover stuck on an element. */
-a.project:not(.non-clickable):focus-visible, #toc li:focus-within,
+a.project:not(.non-clickable):focus-visible, #toc li:has(a:focus-visible),
 a.project.is-current:not(.non-clickable), .photo-section.is-current {
     --ui-cut-top: var(--ui-frame-top);
     --ui-cut-mid: var(--ui-frame-mid);
@@ -281,7 +282,7 @@ a.project.non-clickable:focus-visible, a.project.non-clickable.is-current {
     --ui-cut-mid: var(--ui-red-mid);
     --ui-cut-bot: var(--ui-red-bot);
 }
-body.light-theme #toc li:focus-within, body.light-theme .photo-section.is-current {
+body.light-theme #toc li:has(a:focus-visible), body.light-theme .photo-section.is-current {
     filter: drop-shadow(0 0 4px rgba(0, 0, 0, .45));
 }
 @media (hover: hover) {
@@ -309,12 +310,21 @@ a.project, a.project:hover, a.project:active, a.project:focus-visible, a.non-cli
 #toc li:hover { box-shadow: none; }
 /* Press (click or tap): quick (80 ms) and distinct from hover. The frame turns to its light colour over its whole
    height, the section buttons go down 1 px. The project cards drop back down (style-about.css).
-   Projects without a public link cannot be clicked: they keep their hover look, with no press state. */
-a.project:not(.non-clickable):active, .photo-section:active, #toc li:active {
+   Projects without a public link cannot be clicked: they keep their hover look, with no press state.
+   A gallery section is not a button: its press look only shows with a mouse, a finger on it is usually a scroll. */
+a.project:not(.non-clickable):active, #toc li:active {
     --ui-cut-top: var(--ui-frame-press);
     --ui-cut-mid: var(--ui-frame-press);
     --ui-cut-bot: var(--ui-frame-press);
     transition-duration: 80ms;
+}
+@media (hover: hover) {
+    .photo-section:active {
+        --ui-cut-top: var(--ui-frame-press);
+        --ui-cut-mid: var(--ui-frame-press);
+        --ui-cut-bot: var(--ui-frame-press);
+        transition-duration: 80ms;
+    }
 }
 #toc li:active { transform: translateY(1px); }
 
@@ -322,6 +332,10 @@ a.project:not(.non-clickable):active, .photo-section:active, #toc li:active {
    desktop fade, and the large sections are repainted for a shorter time. */
 @media (hover: none) {
     body a.project, body .photo-section, body #toc li { transition-duration: .15s; }
+    /* Links: a tap lasts far less than the 0.6 s draw, so the line is held by the is-tapped class (script.js) and
+       drawn at the same speed as the mouse hover, then fades out. */
+    a:not(.project).is-tapped:after, .name a:not(.project).is-tapped:after { background-size: 100% 2.2px; }
+    a:not(.project):active:after, .name a:not(.project):active:after { transition-duration: .6s; }
 }
 
 /* 10. Reduced motion: no animation, no transition, no lift.

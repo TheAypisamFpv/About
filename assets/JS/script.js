@@ -112,3 +112,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // iOS Safari only applies :active (press styles) on tap when the page listens to touches
 document.addEventListener('touchstart', () => {}, { passive: true });
+
+// Touch screens: a tap is much shorter than the underline animation, so the tapped link keeps the is-tapped class
+// long enough for its line to be drawn (style-common.css, 10a), then lets it fade out.
+if (window.matchMedia('(hover: none)').matches) {
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest && e.target.closest('a:not(.project)');
+        if (!link) return;
+        link.classList.add('is-tapped');
+        clearTimeout(link.tapTimer);
+        link.tapTimer = setTimeout(() => link.classList.remove('is-tapped'), 700);
+    }, true);
+}
