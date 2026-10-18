@@ -69,6 +69,22 @@ if (document.readyState === 'loading') {
     initTheme();
 }
 
+// Gold frame layer of the project cards (style-common.css, 11b): first child, so it sits between the grey frame and
+// the fill. Only its opacity animates, on the compositor.
+function addCutHighlight(el) {
+    if (el.querySelector(':scope > .ui-cut-hi')) return;
+    const frame = document.createElement('span');
+    frame.className = 'ui-cut-hi';
+    frame.setAttribute('aria-hidden', 'true');
+    frame.appendChild(document.createElement('span'));
+    el.prepend(frame);
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => document.querySelectorAll('.project').forEach(addCutHighlight));
+} else {
+    document.querySelectorAll('.project').forEach(addCutHighlight);
+}
+
 // Touch screens have no hover: the element nearest the centre of the screen gets the
 // is-current class, styled like the hover state (style-common.css).
 function highlightNearestCentre(selector) {

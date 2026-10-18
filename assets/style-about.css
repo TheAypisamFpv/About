@@ -68,9 +68,10 @@
 
 /* Projects: carbon panels with cut corners on a light background (shape, background and border: style-common.css, section 11). */
 .projects { gap: 16px; }
+/* The lift is a transform in its own layer, so it runs on the compositor too (no repaint of the card) */
 a.project {
-    transition: transform .33s var(--ui-ease-lift), filter .33s ease,
-        --ui-cut-top .3s ease, --ui-cut-mid .3s ease, --ui-cut-bot .3s ease, var(--ui-fade-hover);
+    transition: transform .33s var(--ui-ease-lift), var(--ui-fade-hover);
+    will-change: transform;
 }
 /* Hover (mouse) or is-current (touch), both themes: the card lifts 4 px (projects without a public link too, with
    their red frame). */
@@ -82,15 +83,10 @@ a.project.is-current {
     a.project:hover { transform: translateY(-4px); }
 }
 /* Light theme: a small dark shadow around the cut outline gives the gold border a contrasting edge, and a soft drop
-   shadow underneath shows the lift. Both follow the cut corners. */
-body.light-theme a.project:focus-visible,
-body.light-theme a.project.is-current {
+   shadow underneath shows the lift. Both follow the cut corners, on the gold frame layer (style-common.css, 11b),
+   so they fade in with it. */
+body.light-theme a.project > .ui-cut-hi {
     filter: drop-shadow(0 0 4px rgba(0, 0, 0, .45)) drop-shadow(0 4px 4px rgba(0, 0, 0, .25));
-}
-@media (hover: hover) {
-    body.light-theme a.project:hover {
-        filter: drop-shadow(0 0 4px rgba(0, 0, 0, .45)) drop-shadow(0 4px 4px rgba(0, 0, 0, .25));
-    }
 }
 /* Press: the card drops back to 1 px, quickly, and in light theme the shadow tightens (pushed in).
    Projects without a public link have no press state, they keep their hover look. */
@@ -98,7 +94,7 @@ a.project:not(.non-clickable):active {
     transform: translateY(-1px);
     transition-duration: 80ms;
 }
-body.light-theme a.project:not(.non-clickable):active {
+body.light-theme a.project:not(.non-clickable):active > .ui-cut-hi {
     filter: drop-shadow(0 0 2px rgba(0, 0, 0, .5)) drop-shadow(0 1px 2px rgba(0, 0, 0, .3));
 }
 .project h1 { font-size: 1.05em; letter-spacing: .2em; }

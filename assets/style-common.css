@@ -223,7 +223,9 @@ footer, footer p, footer a { font-family: var(--ui-font-display); }
    on it follows the cut outline. The transparent border on the element keeps room for the stroke, --ui-border-w
    (2 px dark, 2.5 px light).
    The border colour is a top-to-bottom gradient of three registered colours (top, 55%, bottom): plain grey at rest,
-   the champagne of the name on hover, and the three fade together.
+   the champagne of the name on hover, and the three fade together (section buttons).
+   Project cards and gallery sections light up through a separate gold frame instead (.ui-cut-hi, below): animating
+   the colours would restyle and repaint the whole card or section, thumbnails included, on every frame of the fade.
    All other buttons are plain rectangles or frameless. */
 @property --ui-cut-top { syntax: "<color>"; inherits: true; initial-value: transparent; }
 @property --ui-cut-mid { syntax: "<color>"; inherits: true; initial-value: transparent; }
@@ -270,35 +272,65 @@ footer, footer p, footer a { font-family: var(--ui-font-display); }
    has a contrasting edge on the light page.
    The real :hover only applies with a mouse (hover: hover); touch screens get the same look through is-current
    (the element nearest the centre of the screen), so a tap never leaves a hover stuck on an element. */
-a.project:not(.non-clickable):focus-visible, #toc li:has(a:focus-visible),
-a.project.is-current:not(.non-clickable), .photo-section.is-current {
+#toc li:has(a:focus-visible) {
     --ui-cut-top: var(--ui-frame-top);
     --ui-cut-mid: var(--ui-frame-mid);
     --ui-cut-bot: var(--ui-frame-bot);
 }
-/* Projects without a public link: same hover, with a red frame instead of the gold one */
-a.project.non-clickable:focus-visible, a.project.non-clickable.is-current {
-    --ui-cut-top: var(--ui-red-top);
-    --ui-cut-mid: var(--ui-red-mid);
-    --ui-cut-bot: var(--ui-red-bot);
-}
-body.light-theme #toc li:has(a:focus-visible), body.light-theme .photo-section.is-current {
+body.light-theme #toc li:has(a:focus-visible) {
     filter: drop-shadow(0 0 4px rgba(0, 0, 0, .45));
 }
 @media (hover: hover) {
-    a.project:not(.non-clickable):hover, .photo-section:hover, #toc li:hover {
+    #toc li:hover {
         --ui-cut-top: var(--ui-frame-top);
         --ui-cut-mid: var(--ui-frame-mid);
         --ui-cut-bot: var(--ui-frame-bot);
     }
-    a.project.non-clickable:hover {
-        --ui-cut-top: var(--ui-red-top);
-        --ui-cut-mid: var(--ui-red-mid);
-        --ui-cut-bot: var(--ui-red-bot);
-    }
-    body.light-theme .photo-section:hover, body.light-theme #toc li:hover {
+    body.light-theme #toc li:hover {
         filter: drop-shadow(0 0 4px rgba(0, 0, 0, .45));
     }
+}
+
+/* 11b. Gold frame of the project cards and gallery sections: <span class="ui-cut-hi"><span></span></span>, first child
+   of the element (added by script.js / gallery-loader.js), so it sits between the grey frame (::before) and the fill
+   (::after). It is painted once, in its own layer, and only its opacity changes: the fade runs on the compositor,
+   nothing inside the card or section is restyled or repainted.
+   - outer span: opacity (hover, focus, is-current, press) and, in light theme, the dark shadow around the cut outline
+     (a filter on the clipped span itself would be clipped away);
+   - inner span: the champagne gradient (red for projects without a public link), clipped to the outer outline;
+   - inner ::after: the flat light gold of the press state, faded in over the gradient. */
+.ui-cut-hi {
+    position: absolute;
+    inset: calc(-1 * var(--ui-border-w));
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s ease, filter .3s ease;
+    will-change: opacity;
+}
+.ui-cut-hi > span {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--ui-frame-top), var(--ui-frame-mid) 55%, var(--ui-frame-bot));
+    clip-path: var(--ui-cut-shape);
+}
+.ui-cut-hi > span::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--ui-frame-press);
+    opacity: 0;
+    transition: opacity .3s ease;
+    will-change: opacity;
+}
+a.project.non-clickable > .ui-cut-hi > span {
+    background: linear-gradient(180deg, var(--ui-red-top), var(--ui-red-mid) 55%, var(--ui-red-bot));
+}
+body.light-theme .ui-cut-hi { filter: drop-shadow(0 0 4px rgba(0, 0, 0, .45)); }
+/* Hover (mouse), keyboard focus or is-current (touch: the element nearest the centre of the screen) */
+a.project:focus-visible > .ui-cut-hi, a.project.is-current > .ui-cut-hi, .photo-section.is-current > .ui-cut-hi { opacity: 1; }
+@media (hover: hover) {
+    a.project:hover > .ui-cut-hi, .photo-section:hover > .ui-cut-hi { opacity: 1; }
 }
 /* The original rules (style.css, components.css) change background, border and scale on hover: neutralised here. */
 a.project, a.project:hover, a.project:active, a.project:focus-visible, a.non-clickable, a.non-clickable:hover {
@@ -312,26 +344,22 @@ a.project, a.project:hover, a.project:active, a.project:focus-visible, a.non-cli
    height, the section buttons go down 1 px. The project cards drop back down (style-about.css).
    Projects without a public link cannot be clicked: they keep their hover look, with no press state.
    A gallery section is not a button: its press look only shows with a mouse, a finger on it is usually a scroll. */
-a.project:not(.non-clickable):active, #toc li:active {
+#toc li:active {
     --ui-cut-top: var(--ui-frame-press);
     --ui-cut-mid: var(--ui-frame-press);
     --ui-cut-bot: var(--ui-frame-press);
     transition-duration: 80ms;
 }
+a.project:not(.non-clickable):active > .ui-cut-hi,
+a.project:not(.non-clickable):active > .ui-cut-hi > span::after { opacity: 1; transition-duration: 80ms; }
 @media (hover: hover) {
-    .photo-section:active {
-        --ui-cut-top: var(--ui-frame-press);
-        --ui-cut-mid: var(--ui-frame-press);
-        --ui-cut-bot: var(--ui-frame-press);
-        transition-duration: 80ms;
-    }
+    .photo-section:active > .ui-cut-hi,
+    .photo-section:active > .ui-cut-hi > span::after { opacity: 1; transition-duration: 80ms; }
 }
 #toc li:active { transform: translateY(1px); }
 
-/* 10a. Touch screens: the highlight follows the scroll (is-current), so it switches quickly, without the slower
-   desktop fade, and the large sections are repainted for a shorter time. */
+/* 10a. Touch screens */
 @media (hover: none) {
-    body a.project, body .photo-section, body #toc li { transition-duration: .15s; }
     /* Links: a tap lasts far less than the 0.6 s draw, so the line is held by the is-tapped class (script.js) and
        drawn at the same speed as the mouse hover, then fades out. */
     a:not(.project).is-tapped:after, .name a:not(.project).is-tapped:after { background-size: 100% 2.2px; }
