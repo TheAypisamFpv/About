@@ -14,9 +14,11 @@ window.onload = function () {
 
 
 let lastScrollTop = 0;
-const header = document.getElementById('header');
 
 window.addEventListener('scroll', function () {
+    // Looked up on each scroll: this script is loaded async and can run before the header is parsed.
+    const header = document.getElementById('header');
+    if (!header) return;
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollTop > lastScrollTop && scrollTop > 50) {
         header.classList.add('header-hide');
@@ -67,20 +69,23 @@ if (document.readyState === 'loading') {
     initTheme();
 }
 
-// Touch screens have no hover: the element most visible on screen gets the
+// Touch screens have no hover: the element nearest the centre of the screen gets the
 // is-current class, styled like the hover state (style-common.css).
-function highlightMostVisible(selector) {
+function highlightNearestCentre(selector) {
     if (!window.matchMedia('(hover: none)').matches) return;
     let current = null;
     let frame = 0;
     const update = () => {
         frame = 0;
         let best = null;
-        let bestVisible = 0;
+        let bestDistance = Infinity;
+        // Distance from the horizontal centre line of the screen to the element (0 when the line crosses it),
+        // so even a short element gets its turn while it passes the middle of the screen.
+        const centre = window.innerHeight / 2;
         document.querySelectorAll(selector).forEach(el => {
             const r = el.getBoundingClientRect();
-            const visible = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
-            if (visible > bestVisible) { bestVisible = visible; best = el; }
+            const distance = r.top > centre ? r.top - centre : r.bottom < centre ? centre - r.bottom : 0;
+            if (distance < bestDistance) { bestDistance = distance; best = el; }
         });
         if (best !== current) {
             if (current) current.classList.remove('is-current');
@@ -94,9 +99,9 @@ function highlightMostVisible(selector) {
     schedule();
 }
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => highlightMostVisible('.project'));
+    document.addEventListener('DOMContentLoaded', () => highlightNearestCentre('.project'));
 } else {
-    highlightMostVisible('.project');
+    highlightNearestCentre('.project');
 }
 
 document.addEventListener('DOMContentLoaded', function() {

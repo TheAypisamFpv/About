@@ -298,6 +298,12 @@ a.project:not(.non-clickable):active, .photo-section:active, #toc li:active {
 }
 #toc li:active { transform: translateY(1px); }
 
+/* 10a. Touch screens: the highlight follows the scroll (is-current), so it switches quickly, without the slower
+   desktop fade, and the large sections are repainted for a shorter time. */
+@media (hover: none) {
+    body a.project, body .photo-section, body #toc li { transition-duration: .15s; }
+}
+
 /* 10. Reduced motion: no animation, no transition, no lift.
    .animate starts at opacity: 0 and only reaches 1 through the animation: make it visible directly. */
 @media (prefers-reduced-motion: reduce) {
