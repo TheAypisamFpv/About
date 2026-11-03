@@ -184,11 +184,12 @@ footer, footer p, footer a { font-family: var(--ui-font-display); }
     letter-spacing: .08em;
 }
 .footer_credits .signature-logo { display: flex; height: 90%; width: auto; }
-/* The signature file was replaced under the same name: the version query makes browsers fetch the new one instead of
-   reusing a cached copy of the old signature. Bump it whenever the file changes again. */
+/* Vector signature: a new file name, so no cache-busting query is needed. Add a ?v= query if the SVG is later replaced
+   under the same name. */
 .signature-logo {
-    -webkit-mask-image: url("The_Aypisam_FPV-signature-WB.png?v=2");
-    mask-image: url("The_Aypisam_FPV-signature-WB.png?v=2");
+    -webkit-mask-image: url("The_Aypisam_FPV-signature-WB.svg");
+    mask-image: url("The_Aypisam_FPV-signature-WB.svg");
+    mask-mode: luminance; /* only the white strokes, not the black outline */
     will-change: transform;
 }
 .mobile-logo { display: none; }

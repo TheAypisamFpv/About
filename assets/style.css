@@ -529,8 +529,8 @@ a:not(.project):hover:after {
 
 
 .signature-logo {
-    -webkit-mask-image: url("The_Aypisam_FPV-signature-WB.png");
-    mask-image: url("The_Aypisam_FPV-signature-WB.png");
+    -webkit-mask-image: url("The_Aypisam_FPV-signature-WB.svg");
+    mask-image: url("The_Aypisam_FPV-signature-WB.svg");
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     -webkit-mask-position: center;
@@ -538,7 +538,7 @@ a:not(.project):hover:after {
     -webkit-mask-size: contain;
     mask-size: contain;
     background-color: var(--text-color);
-    aspect-ratio: 5620 / 1148;
+    aspect-ratio: 5632 / 1160;
 }
 
 .footer_credits .signature-logo {
